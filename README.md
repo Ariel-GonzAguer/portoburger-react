@@ -8,3 +8,4 @@
 - Michirouter.
 - Sonner.
 - CSS Puro.
+- React Slick.
