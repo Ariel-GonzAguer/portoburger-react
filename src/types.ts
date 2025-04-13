@@ -3,6 +3,7 @@ export interface StoreState {
   total: number;
   agregarACarrito: (id: string, nombre: string, cantidad: number, precio: number) => void;
   eliminarDeCarrito: (id: string) => void;
+  vaciarCarrito: () => void;
 }
 
 export interface Producto {

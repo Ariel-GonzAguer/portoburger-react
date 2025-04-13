@@ -51,6 +51,9 @@ const useStorePorto = create<StoreState>()(
         }
       });
     },
+    vaciarCarrito: () => {
+      set({ carrito: [], total: 0 });
+    },
   }))
   //   {
   //     name: "portoburger-store", // Nombre de la clave en el local storage
