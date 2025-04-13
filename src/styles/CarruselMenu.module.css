@@ -1,0 +1,28 @@
+.slide {
+  /* border: 3px solid green; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  & p {
+    font-size: 1.2rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  & img {
+    margin: 0.5rem auto;
+    border-radius: 6px;
+    max-height: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+    object-position: center;
+  }
+
+  &.slide {
+    padding: 0 1rem; /* Espaciado horizontal entre slides */
+  }
+}

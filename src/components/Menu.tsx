@@ -1,15 +1,35 @@
+// componentes 
+import CarruselHamburguesas from "./CarruselHamburguesas";
+import CarruselAcompañamientos from "./CarruselAcompañamientos";
+import CarruselBebidas from "./CarruselBebidas";
+import CarruselPostres from "./CarruselPostres";
+
+
+import styles from "../styles/Menu.module.css";
+
+
 export default function Menu() {
   return (
-    <section id="menu">
+    <section id={styles.menu} className={styles.menu}>
       <h2>Menú</h2>
-      <ul>
-        <li>11</li>
-        <li>21</li>
-        <li>31</li>
-        <li>41</li>
-        <li>51</li>
-        <li>61</li>
-      </ul>
+      <section className={styles.carruselSection}>
+        <div className={styles.carruselDiv}>
+          <CarruselHamburguesas />
+        </div>
+
+        <div className={styles.carruselDiv}>
+          <CarruselAcompañamientos />
+        </div>
+
+        <div className={styles.carruselDiv}>
+          <CarruselBebidas />
+        </div>
+
+        <div className={styles.carruselDiv}>
+          <CarruselPostres />
+        </div>
+      </section>
+
     </section>
   );
 }

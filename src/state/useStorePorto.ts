@@ -3,7 +3,7 @@ import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { StoreState, Producto } from "../types";
 
-const useStore = create<StoreState>()(
+const useStorePorto = create<StoreState>()(
   persist(
     immer((set) => ({
       // Estados
@@ -12,7 +12,7 @@ const useStore = create<StoreState>()(
 
       // Acciones
       agregarACarrito: (id, cantidad, precio) => {
-        const nuevoProducto: Producto = { id, cantidad, precio };
+        const nuevoProducto: Producto = { id: Number(id), cantidad, precio };
         set((state) => {
           state.carrito.push(nuevoProducto);
           state.total += nuevoProducto.cantidad * nuevoProducto.precio;
@@ -22,11 +22,11 @@ const useStore = create<StoreState>()(
       eliminarDeCarrito: (id) => {
         set((state) => {
           const productoAEliminar = state.carrito.find(
-            (producto) => producto.id === id
+            (producto) => producto.id === Number(id)
           );
           if (productoAEliminar) {
             state.carrito = state.carrito.filter(
-              (producto) => producto.id !== id
+              (producto) => producto.id !== Number(id)
             );
             state.total -=
               productoAEliminar.cantidad * productoAEliminar.precio;
@@ -40,4 +40,4 @@ const useStore = create<StoreState>()(
   )
 );
 
-export default useStore;
+export default useStorePorto;

@@ -1,0 +1,12 @@
+.hacerPedido {
+  & h2 {
+    font-size: 2.5rem;
+  }
+  & .hamburguesasContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+}

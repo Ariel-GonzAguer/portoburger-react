@@ -2,16 +2,18 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: all 0.5s ease-out allow-discrete;
+  /* transition: all 0.5s ease-out allow-discrete; */
 }
 
 html {
   font-family: Arial, Helvetica, sans-serif;
   cursor: default;
   height: 100%;
+  background-color: whitesmoke;
 }
 
 body {
+  /* overflow: hidden; */
   scroll-behavior: smooth;
   line-height: 1.5;
   text-align: center;
@@ -21,7 +23,7 @@ body {
 /* tipografías */
 @font-face {
   font-family: "Bungee";
-  src: url("/public/tipografias/Bungee/Bungee-Regular.ttf") format("truetype");
+  src: url("/tipografias/Bungee/Bungee-Regular.ttf") format("truetype");
   font-display: swap;
   /*este atributo:valor aseguran que se muestre el texto mientras cargan las fuentes, de otra manera el texto aparece "invisible"*/
 }
@@ -33,26 +35,4 @@ h4,
 h5,
 h6 {
   font-family: "Bungee", sans-serif;
-}
-
-nav {
-  width: 100%;
-
-  & ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-
-    & li,
-    a {
-      list-style: none;
-      text-decoration: none;
-    }
-
-    & a {
-      margin: 0 1rem;
-      color: #000;
-    }
-  }
 }

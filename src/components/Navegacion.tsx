@@ -11,12 +11,13 @@ export default function Navegacion() {
         <li>
           <a href="#hacer-pedido">Hacé tu pedido</a>
         </li>
-        <Link to="/ingredientes">Ingredientes</Link>
-        <Link to="/">Home</Link>
+        <li><Link to="/ingredientes">Ingredientes</Link></li>
+        <li><Link to="/">Home</Link></li>
         <li>
           <a href="#menu">Menú</a>
         </li>
-        <Link to="/preguntas-frecuentes">Preguntas Frecuentes</Link>
+        <li><Link to="/preguntas-frecuentes">Preguntas Frecuentes</Link></li>
+
       </ul>
     </nav>
   );

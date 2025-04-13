@@ -6,7 +6,15 @@ export interface StoreState {
 }
 
 export interface Producto {
-  id: string;
+  id: number;
   cantidad: number;
   precio: number;
+}
+
+export interface SlideProps {
+  className?: string;
+  h4: string;
+  p: string;
+  img?: string;
+  alt?: string;
 }
