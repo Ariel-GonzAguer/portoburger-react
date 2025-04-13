@@ -10,7 +10,7 @@ export default function PagoFicticio() {
 
   return (
     <section className={styles.pagoFicticio}>
-      <p>Pronto será transeferido a un chat de Whatsapp para proceder con su pedido.</p>
+      <p>Pronto serás transeferido a un chat de Whatsapp para proceder con su pedido.</p>
       <p>Los métodos de pago disponible son:</p>
       <ul>
         <li>Sinpe 📱</li>
@@ -28,8 +28,9 @@ export default function PagoFicticio() {
           ))
         }
       </ul>
-      <p style={{fontWeight:"bolder"}}>Total: ₡{carrito.reduce((total, item) => total + item.precio * item.cantidad, 0)}</p>	
+      <p style={{ fontWeight: "bolder" }}>Total: ₡{carrito.reduce((total, item) => total + item.precio * item.cantidad, 0)}</p>
       <img src="/Pies_SVG.svg" alt="loader" />
+      <p>¡Gracias por tu compra!</p>
 
     </section>
   )
