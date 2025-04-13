@@ -1,43 +1,61 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { persist } from "zustand/middleware";
+// import { persist } from "zustand/middleware";
 import { StoreState, Producto } from "../types";
 
 const useStorePorto = create<StoreState>()(
-  persist(
-    immer((set) => ({
-      // Estados
-      carrito: [],
-      total: 0,
+  // persist(
+  immer((set) => ({
+    // Estados
+    carrito: [],
+    total: 0,
 
-      // Acciones
-      agregarACarrito: (id, cantidad, precio) => {
-        const nuevoProducto: Producto = { id: Number(id), cantidad, precio };
-        set((state) => {
+    // Acciones
+    agregarACarrito: (id, nombre, cantidad, precio) => {
+      const nuevoProducto: Producto = {
+        id,
+        nombre,
+        cantidad,
+        precio,
+      };
+      set((state) => {
+        const productoExistente = state.carrito.find(
+          (producto) => producto.id === nuevoProducto.id
+        );
+        if (productoExistente) {
+          productoExistente.cantidad += cantidad;
+          state.total += cantidad * precio;
+        } else {
           state.carrito.push(nuevoProducto);
-          state.total += nuevoProducto.cantidad * nuevoProducto.precio;
-        });
-      },
+          state.total += cantidad * precio;
+        }
+      });
+    },
 
-      eliminarDeCarrito: (id) => {
-        set((state) => {
-          const productoAEliminar = state.carrito.find(
-            (producto) => producto.id === Number(id)
-          );
-          if (productoAEliminar) {
-            state.carrito = state.carrito.filter(
-              (producto) => producto.id !== Number(id)
-            );
+    eliminarDeCarrito: (id, cantidad = 1) => {
+      set((state) => {
+        const productoExistente = state.carrito.find(
+          (producto) => producto.id === id
+        );
+        if (productoExistente) {
+          if (productoExistente.cantidad > cantidad) {
+            productoExistente.cantidad -= cantidad;
+            state.total -= cantidad * productoExistente.precio;
+          } else {
             state.total -=
-              productoAEliminar.cantidad * productoAEliminar.precio;
+              productoExistente.cantidad * productoExistente.precio;
+            state.carrito = state.carrito.filter(
+              (producto) => producto.id !== id
+            );
           }
-        });
-      },
-    })),
-    {
-      name: "portoburger-store", // Nombre de la clave en el local storage
-    }
-  )
+        }
+      });
+    },
+  }))
+  //   {
+  //     name: "portoburger-store", // Nombre de la clave en el local storage
+  //   }
+  // )
 );
 
 export default useStorePorto;

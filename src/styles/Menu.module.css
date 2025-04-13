@@ -1,6 +1,6 @@
 .menu {
   margin: 2rem auto;
-  /* width: 100%; */
+  text-align: center;
 
   & .carruselSection {
     display: flex;
@@ -20,12 +20,10 @@
   }
 
   & h2 {
+    display: inline-block;
     font-size: 2.9rem;
     letter-spacing: 0.5rem;
-    border: 2px solid #000;
-    border-radius: 5px;
-    width: 20%;
-    margin: 0 auto;
+    font-weight: bolder;
   }
 
   & h3 {

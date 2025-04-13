@@ -8,7 +8,6 @@
 html {
   font-family: Arial, Helvetica, sans-serif;
   cursor: default;
-  height: 100%;
   background-color: whitesmoke;
 }
 
@@ -17,7 +16,7 @@ body {
   scroll-behavior: smooth;
   line-height: 1.5;
   text-align: center;
-  height: 100%;
+  margin-bottom: 2rem;
 }
 
 /* tipografías */
