@@ -1,0 +1,19 @@
+.pagoFicticio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 100vh; */
+
+  & p {
+    font-size: 1.5rem;
+    margin: 1rem auto;
+  }
+
+  & ul {
+    & li {
+      list-style: none;
+      font-size: 1.5rem;
+    }
+  }
+}

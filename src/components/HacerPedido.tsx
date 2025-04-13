@@ -56,7 +56,7 @@ export default function HacerPedido() {
                 style: {
                     zIndex: 9000,
                 },
-                onDismiss: cancelarPedido,
+                closeButton: false
             });
         }
     }
