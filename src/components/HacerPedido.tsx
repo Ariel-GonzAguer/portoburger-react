@@ -1,5 +1,5 @@
 // hooks
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 // store
 import useStorePorto from "../state/useStorePorto";
@@ -19,6 +19,9 @@ import { useNavigate } from "@arielgonzaguer/michi-router"
 // componentes
 import { toast, Toaster } from "sonner";
 
+// tipo
+// import { Producto } from "../types";
+
 
 export default function HacerPedido() {
     // store
@@ -37,6 +40,26 @@ export default function HacerPedido() {
     }
 
     // handlers
+    function handleAgregarACarrito(producto: any, index: number, tipo: string) {
+        agregarACarrito(`${tipo}-${index}`, producto.h4, 1, producto.precio);
+        const span = document.querySelector(`[data-contador="${tipo}-${index}"]`);
+        if (span) {
+            span.textContent = (parseInt(span.textContent || "0") + 1).toString();
+        }
+    }
+
+    function handleEliminarDeCarrito(index: number, tipo: string) {
+        const span = document.querySelector(`[data-contador="${tipo}-${index}"]`);
+        if (span) {
+            const valorActual = parseInt(span.textContent || "0");
+
+            if (valorActual > 0) {
+                eliminarDeCarrito(`${tipo}-${index}`);
+                span.textContent = (valorActual - 1).toString();
+            }
+        }
+    }
+
     function procederConPago() {
         if (carrito.length === 0) {
             toast.error("No hay productos en el carrito", {
@@ -61,12 +84,6 @@ export default function HacerPedido() {
         }
     }
 
-    useEffect(() => {
-        // // console.log("render");
-        // console.log("carrito", carrito);
-        // console.log("total", total);
-    }, [carrito, total]);
-
     return (
         <section id="hacer-pedido" className={styles.hacerPedido}>
             <Toaster richColors position="bottom-center" closeButton />
@@ -83,21 +100,9 @@ export default function HacerPedido() {
                                     <p>₡{hamburguesa.precio}</p>
                                 </div>
                                 <div>
-                                    <button onClick={() => {
-                                        agregarACarrito(`hamburguesa-${index}`, hamburguesa.h4, 1, hamburguesa.precio);
-                                        const spanHamburguesas = document.querySelector(`[data-contador="hamburguesa-${index}"]`);
-                                        if (spanHamburguesas) {
-                                            spanHamburguesas.textContent = (parseInt(spanHamburguesas.textContent || "0") + 1).toString();
-                                        }
-                                    }}>+</button>
+                                    <button onClick={() => handleAgregarACarrito(hamburguesa, index, "hamburguesa")}>+</button>
                                     <span data-contador={`hamburguesa-${index}`}>0</span>
-                                    <button onClick={() => {
-                                        eliminarDeCarrito(`hamburguesa-${index}`);
-                                        const spanHamburguesas = document.querySelector(`[data-contador="hamburguesa-${index}"]`);
-                                        if (spanHamburguesas && spanHamburguesas.textContent !== "0") {
-                                            spanHamburguesas.textContent = (parseInt(spanHamburguesas.textContent || "0") - 1).toString();
-                                        }
-                                    }}>-</button>
+                                    <button onClick={() => handleEliminarDeCarrito(index, "hamburguesa")}>-</button>
                                 </div>
                             </div>
                         ))
@@ -114,21 +119,9 @@ export default function HacerPedido() {
                                     <p>₡{acompañamiento.precio}</p>
                                 </div>
                                 <div>
-                                    <button onClick={() => {
-                                        agregarACarrito(`acompañamiento-${index}`, acompañamiento.h4, 1, acompañamiento.precio);
-                                        const spanAcompañamiento = document.querySelector(`[data-contador="acompañamiento-${index}"]`);
-                                        if (spanAcompañamiento) {
-                                            spanAcompañamiento.textContent = (parseInt(spanAcompañamiento.textContent || "0") + 1).toString();
-                                        }
-                                    }}>+</button>
+                                    <button onClick={() => handleAgregarACarrito(acompañamiento, index, "acompañamiento")}>+</button>
                                     <span data-contador={`acompañamiento-${index}`}>0</span>
-                                    <button onClick={() => {
-                                        eliminarDeCarrito(`acompañamiento-${index}`);
-                                        const spanAcompañamiento = document.querySelector(`[data-contador="acompañamiento-${index}"]`);
-                                        if (spanAcompañamiento && spanAcompañamiento.textContent !== "0") {
-                                            spanAcompañamiento.textContent = (parseInt(spanAcompañamiento.textContent || "0") - 1).toString();
-                                        }
-                                    }}>-</button>
+                                    <button onClick={() => handleEliminarDeCarrito(index, "acompañamiento")}>-</button>
                                 </div>
                             </div>
                         ))
@@ -145,21 +138,9 @@ export default function HacerPedido() {
                                     <p>₡{bebida.precio}</p>
                                 </div>
                                 <div>
-                                    <button onClick={() => {
-                                        agregarACarrito(`bebida-${index}`, bebida.h4, 1, bebida.precio);
-                                        const spanBebida = document.querySelector(`[data-contador="bebida-${index}"]`);
-                                        if (spanBebida) {
-                                            spanBebida.textContent = (parseInt(spanBebida.textContent || "0") + 1).toString();
-                                        }
-                                    }}>+</button>
+                                    <button onClick={() => handleAgregarACarrito(bebida, index, "bebida")}>+</button>
                                     <span data-contador={`bebida-${index}`}>0</span>
-                                    <button onClick={() => {
-                                        eliminarDeCarrito(`bebida-${index}`);
-                                        const spanBebida = document.querySelector(`[data-contador="bebida-${index}"]`);
-                                        if (spanBebida && spanBebida.textContent !== "0") {
-                                            spanBebida.textContent = (parseInt(spanBebida.textContent || "0") - 1).toString();
-                                        }
-                                    }}>-</button>
+                                    <button onClick={() => handleEliminarDeCarrito(index, "bebida")}>-</button>
                                 </div>
                             </div>
                         ))
@@ -176,21 +157,9 @@ export default function HacerPedido() {
                                     <p>₡{postre.precio}</p>
                                 </div>
                                 <div>
-                                    <button onClick={() => {
-                                        agregarACarrito(`postre-${index}`, postre.h4, 1, postre.precio);
-                                        const spanPostre = document.querySelector(`[data-contador="postre-${index}"]`);
-                                        if (spanPostre) {
-                                            spanPostre.textContent = (parseInt(spanPostre.textContent || "0") + 1).toString();
-                                        }
-                                    }}>+</button>
+                                    <button onClick={() => handleAgregarACarrito(postre, index, "postre")}>+</button>
                                     <span data-contador={`postre-${index}`}>0</span>
-                                    <button onClick={() => {
-                                        eliminarDeCarrito(`postre-${index}`);
-                                        const spanPostre = document.querySelector(`[data-contador="postre-${index}"]`);
-                                        if (spanPostre && spanPostre.textContent !== "0") {
-                                            spanPostre.textContent = (parseInt(spanPostre.textContent || "0") - 1).toString();
-                                        }
-                                    }}>-</button>
+                                    <button onClick={() => handleEliminarDeCarrito(index, "postre")}>-</button>
                                 </div>
                             </div>
                         ))
@@ -214,10 +183,7 @@ export default function HacerPedido() {
 
                         <button onClick={procederConPago} className={styles.btnPedido}>Realizar pedido</button></> : <p>No hay productos en el carrito</p>
                 }
-
-
             </section>
-
         </section>
     );
 };
