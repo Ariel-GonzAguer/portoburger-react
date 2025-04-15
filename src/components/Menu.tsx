@@ -10,7 +10,7 @@ import styles from "../styles/Menu.module.css";
 
 export default function Menu() {
   return (
-    <section id={styles.menu} className={styles.menu}>
+    <section id="menu" className={styles.menu}>
       <h2>Menú</h2>
       <section className={styles.carruselSection}>
         <div className={styles.carruselDiv}>
