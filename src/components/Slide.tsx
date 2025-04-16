@@ -10,7 +10,7 @@ export default function Slide({ className, h4, p, img, alt }: SlideProps) {
       <p>
         {p}
       </p>
-      <img src={img} alt={alt} />
+      <img src={img} alt={alt} loading="lazy" />
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import Header from "../components/Header";
 import Menu from "../components/Menu";
 import HacerPedido from "../components/HacerPedido";
+import Header from "../components/Header";
 
 export default function Index() {
   return (
@@ -9,5 +9,5 @@ export default function Index() {
       <Menu />
       <HacerPedido />
     </div>
-  );
+  )
 }

@@ -29,7 +29,7 @@ export default function PagoFicticio() {
         }
       </ul>
       <p style={{ fontWeight: "bolder" }}>Total: ₡{carrito.reduce((total, item) => total + item.precio * item.cantidad, 0)}</p>
-      <img src="/Pies_SVG.svg" alt="loader" />
+      <img src="/Pies_SVG.svg" alt="loader" loading="lazy" />
       <p>¡Gracias por tu compra!</p>
 
     </section>

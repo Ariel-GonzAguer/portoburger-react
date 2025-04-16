@@ -1,5 +1,5 @@
 // hooks
-import { useEffect } from "react";
+import useManageSlickSlides from "../hooks/useManageSlickSlides";
 
 // react-slick
 import Slider from "react-slick";
@@ -16,17 +16,7 @@ import Slide from "./Slide";
 import hamburguesasMenu from "../data/hamburguesas";
 
 export default function CarruselMenu() {
-  useEffect(() => {
-    const slides = document.querySelectorAll(".slick-slide");
-    slides.forEach((slide) => {
-      const isHidden = slide.getAttribute("aria-hidden") === "true";
-      if (isHidden) {
-        slide.setAttribute("inert", "");
-      } else {
-        slide.removeAttribute("inert");
-      }
-    });
-  }, []);
+  useManageSlickSlides();
 
   const settings = {
     dots: true,

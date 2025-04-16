@@ -6,6 +6,10 @@ import PreguntasFrecuentes from "../pages/preguntasFrecuentes";
 import PagoFicticio from "../pages/pago-ficticio";
 import NotFoud404 from "./NotFound404";
 
+
+// layout
+import BaseLayout from "../layouts/BaseLayout";
+
 const rutas = [
   { path: "/", component: <Index /> },
   { path: "/ingredientes", component: <Ingredientes /> },
@@ -15,7 +19,7 @@ const rutas = [
 
 export default function MichiRouter() {
   return (
-    <RouterProvider routes={rutas}>
+    <RouterProvider routes={rutas} layout={BaseLayout}>
       <NotFoud404 />
     </RouterProvider>
   );
