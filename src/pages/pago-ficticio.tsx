@@ -15,7 +15,7 @@ export default function PagoFicticio() {
       <ul>
         <li>Sinpe 📱</li>
         <li>Transferencia bancaria 💸</li>
-        <li>Efectivo (si recoge en el restaurante) 💵</li>
+        <li>Efectivo (si recogés en el restaurante) 💵</li>
         <li>Zunify - ¡Nueva forma! ⭐</li>
       </ul>
       <p>Su pedido es:</p>

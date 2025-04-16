@@ -1,0 +1,29 @@
+.preguntasFrecuentes {
+  padding: 1rem;
+
+  & h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  & h3 {
+    font-size: 1.5rem;
+    margin: 1rem auto 0;
+  }
+
+  & p {
+    font-size: 1rem;
+    line-height: 2rem;
+    margin: 0 auto 2rem;
+    width: 80%;
+  }
+
+  & img {
+    height: 300px;
+
+    &:hover {
+      transform: rotate(360deg);
+      transition: all 2s ease-out;
+    }
+  }
+}
