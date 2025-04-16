@@ -1,5 +1,5 @@
 // estilos
-import styles from '../styles/PreguntasFrecuentes.module.css'
+import styles from '../styles/preguntasFrecuentes.module.css'
 
 export default function PreguntasFrecuentes() {
   return (
