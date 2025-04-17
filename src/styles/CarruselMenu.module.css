@@ -1,5 +1,4 @@
 .slide {
-  /* border: 3px solid green; */
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -24,5 +23,13 @@
 
   &.slide {
     padding: 0 1rem; /* Espaciado horizontal entre slides */
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    & img {
+      max-height: 300px;
+    }
   }
 }

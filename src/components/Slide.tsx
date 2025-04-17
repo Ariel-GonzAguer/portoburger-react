@@ -1,7 +1,6 @@
 // tipos
 import { SlideProps } from "../types";
 
-
 export default function Slide({ className, h4, p, img, alt }: SlideProps) {
 
   return (

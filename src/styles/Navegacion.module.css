@@ -31,3 +31,21 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .navegacion {
+    padding: 0.2rem 0;
+
+    & ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: safe;
+
+      & li {
+        margin: 0.5rem;
+      }
+    }
+  }
+}
