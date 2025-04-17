@@ -12,6 +12,8 @@
   & h3 {
     font-size: 1.5rem;
     margin: 1rem auto;
+    border-bottom: 2px solid #000;
+    width: 20%;
   }
 
   & h5 {
@@ -39,7 +41,6 @@
       }
     }
   }
-
   & li {
     list-style: none;
   }
@@ -60,5 +61,63 @@
     width: auto;
     margin: 0 auto;
     padding: 0.2rem 1rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .hacerPedido {
+    & h2 {
+      font-size: 2rem;
+    }
+
+    & h3 {
+      font-size: 1.5rem;
+      width: 80%;
+    }
+
+    & h4 {
+      font-size: 1.5rem;
+    }
+
+    & p {
+      font-size: 1.3rem;
+    }
+
+    & .productosContainer {
+      & .producto {
+        display: block;
+      }
+      & button {
+        all: unset;
+        cursor: pointer;
+        background-color: black;
+        color: whitesmoke;
+        width: 1.2rem;
+        border-radius: 3px;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 1.5rem;
+      }
+      & span {
+        padding: 0 0.6rem;
+        width: 1.8rem;
+        font-size: 1.2rem;
+      }
+    }
+
+    & .btnPedido,
+    .btnToast {
+      font-size: 1.5rem;
+      display: block;
+      width: auto;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    & li,
+    p {
+      font-size: 1.5rem;
+    }
   }
 }
