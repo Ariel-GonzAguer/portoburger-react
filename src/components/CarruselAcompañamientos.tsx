@@ -32,6 +32,7 @@ export default function CarruselAcompañamientos() {
                 p={slide.p}
                 img={slide.img}
                 alt={slide.alt}
+                data-testid="mock-slide"
               />
             );
           })
