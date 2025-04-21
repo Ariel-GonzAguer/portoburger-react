@@ -102,7 +102,7 @@ export default function HacerPedido() {
                                 <div>
                                     <button onClick={() => handleAgregarACarrito(hamburguesa, index, "hamburguesa")}>+</button>
                                     <span data-contador={`hamburguesa-${index}`}>0</span>
-                                    <button onClick={() => handleEliminarDeCarrito(index, "hamburguesa")}>-</button>
+                                    <button name="-" onClick={() => handleEliminarDeCarrito(index, "hamburguesa")}>-</button>
                                 </div>
                             </div>
                         ))
@@ -166,11 +166,11 @@ export default function HacerPedido() {
                     }
                 </div>
             </section>
-            <section>
+            <section title="tu-pedido">
                 <h5>Tu pedido</h5>
                 {
                     carrito.length > 0 ? <>
-                        <button onClick={vaciarCarrito} className={styles.btnPedido}>Vaciar el carrito</button>
+                        <button onClick={vaciarCarrito} className={styles.btnPedido} name="vaciar">Vaciar el carrito</button>
                         <p>Total:₡ {total}</p>
 
                         <ul>
@@ -181,7 +181,7 @@ export default function HacerPedido() {
                             }
                         </ul>
 
-                        <button onClick={procederConPago} className={styles.btnPedido}>Realizar pedido</button></> : <p>No hay productos en el carrito</p>
+                        <button onClick={procederConPago} className={styles.btnPedido} name="realizar-pedido">Realizar pedido</button></> : <p>No hay productos en el carrito</p>
                 }
             </section>
         </section>
