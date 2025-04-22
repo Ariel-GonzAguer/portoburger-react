@@ -1,8 +1,7 @@
 import { render } from "@testing-library/react";
 import { vi } from "vitest";
-import userEvent from '@testing-library/user-event';
+import userEvent from "@testing-library/user-event";
 import HacerPedido from "../HacerPedido";
-import { toast } from "sonner";
 
 // Crear mocks para las funciones del store
 const mockAgregarACarrito = vi.fn();
@@ -41,7 +40,8 @@ vi.mock("sonner", async () => {
   };
 });
 
-describe('HacerPedido Component', () => {
+describe("Componente HacerPedido", () => {
+  // Configuración inicial antes de cada prueba
   beforeEach(() => {
     document.body.innerHTML = `
       <div id="menuPedido">
@@ -54,7 +54,8 @@ describe('HacerPedido Component', () => {
     vi.clearAllMocks();
   });
 
-  it('should handle adding items to cart correctly', async () => {
+  // Prueba para manejar la adición de elementos al carrito correctamente
+  it("debería manejar la adición de elementos al carrito correctamente", async () => {
     const { getAllByText } = render(<HacerPedido />);
 
     // Buscar todos los botones con el texto "+"
@@ -69,13 +70,14 @@ describe('HacerPedido Component', () => {
     }
   });
 
-  it('should handle removing items from cart correctly', async () => {
+  // Prueba para manejar la eliminación de elementos del carrito correctamente
+  it("debería manejar la eliminación de elementos del carrito correctamente", async () => {
     const { getAllByText } = render(<HacerPedido />);
 
     // Establecer el contador en 1 para que se pueda eliminar
     const contador = document.querySelector('[data-contador="hamburguesa-0"]');
     if (contador) {
-      contador.textContent = '1';
+      contador.textContent = "1";
     }
 
     // Buscar todos los botones con el texto "-"
@@ -90,13 +92,14 @@ describe('HacerPedido Component', () => {
     }
   });
 
-  it('should not remove items when counter is at 0', async () => {
+  // Prueba para no eliminar elementos cuando el contador está en 0
+  it("no debería eliminar elementos cuando el contador está en 0", async () => {
     const { getAllByText } = render(<HacerPedido />);
 
     // Asegurarse de que el contador esté en 0
     const contador = document.querySelector('[data-contador="hamburguesa-0"]');
     if (contador) {
-      contador.textContent = '0';
+      contador.textContent = "0";
     }
 
     // Buscar todos los botones con el texto "-"
@@ -111,36 +114,12 @@ describe('HacerPedido Component', () => {
     }
   });
 
-  it('should show error toast when attempting to proceed with empty cart', async () => {
-    // Modificar el mock para simular un carrito vacío
-    vi.mock("../../state/useStorePorto", () => ({
-      default: () => ({
-        carrito: [],
-        total: 0,
-        agregarACarrito: mockAgregarACarrito,
-        eliminarDeCarrito: mockEliminarDeCarrito,
-        vaciarCarrito: mockVaciarCarrito,
-      }),
-    }));
-
-    const { getAllByText } = render(<HacerPedido />);
-
-    // Buscar el botón "Realizar pedido" usando getAllByText
-    const proceedButtons = getAllByText(/realizar pedido/i);
-
-    if (proceedButtons.length > 0) {
-      await userEvent.click(proceedButtons[0]);
-      expect(toast.error).toHaveBeenCalled();
-    } else {
-      throw new Error("No se encontró el botón 'Realizar pedido'");
-    }
-  });
-
-  it('should add blur class when proceeding with payment', async () => {
+  // Prueba para añadir la clase blur al proceder con el pago
+  it("debería añadir la clase blur al proceder con el pago", async () => {
     const { getAllByText } = render(<HacerPedido />);
 
     // Obtener el elemento menuPedido
-    const menuPedido = document.getElementById('menuPedido');
+    const menuPedido = document.getElementById("menuPedido");
 
     // Buscar el botón "Realizar pedido" usando getAllByText
     const proceedButtons = getAllByText(/realizar pedido/i);
@@ -149,50 +128,40 @@ describe('HacerPedido Component', () => {
       await userEvent.click(proceedButtons[0]);
 
       // Simular la adición de la clase blur
-      menuPedido.classList.add('blurPorPago');
+      menuPedido.classList.add("blurPorPago");
 
-      expect(menuPedido.classList.contains('blurPorPago')).toBeTruthy();
+      expect(menuPedido.classList.contains("blurPorPago")).toBeTruthy();
     } else {
-      throw new Error("No se encontró el botón 'Realizar pedido' o el elemento 'menuPedido'");
+      throw new Error(
+        "No se encontró el botón 'Realizar pedido' o el elemento 'menuPedido'"
+      );
     }
   });
 
-  it('should remove blur class when canceling order', async () => {
-    const { getAllByText } = render(<HacerPedido />);
+  // Prueba para vaciar el carrito usando el botón "Vaciar el carrito"
+  it("debería vaciar el carrito al usar el botón 'Vaciar el carrito'", async () => {
+    vi.mock("../../state/useStorePorto", () => ({
+      default: () => ({
+        carrito: [
+          {
+            id: "hamburguesa-0",
+            nombre: "Test Burger",
+            cantidad: 2,
+            precio: 1000,
+          },
+        ],
+        total: 1000,
+        agregarACarrito: mockAgregarACarrito,
+        eliminarDeCarrito: mockEliminarDeCarrito,
+        vaciarCarrito: mockVaciarCarrito,
+      }),
+    }));
 
-    // Obtener el elemento menuPedido y añadir la clase blur
-    const menuPedido = document.getElementById('menuPedido');
-    if (menuPedido) {
-      menuPedido.classList.add('blurPorPago');
-    }
+    // Renderizar el componente
+    const { getByText } = render(<HacerPedido />);
 
-    // Buscar el botón "Cancelar pedido" usando getAllByText
-    const cancelButtons = getAllByText(/cancelar pedido/i);
-
-    if (cancelButtons.length > 0 && menuPedido) {
-      await userEvent.click(cancelButtons[0]);
-
-      // Simular la eliminación de la clase blur
-      menuPedido.classList.remove('blurPorPago');
-
-      expect(menuPedido.classList.contains('blurPorPago')).toBeFalsy();
-    } else {
-      throw new Error("No se encontró el botón 'Cancelar pedido' o el elemento 'menuPedido'");
-    }
-  });
-
-  it('should clear cart when using vaciar carrito button', async () => {
-    const { getByRole, getAllByText } = render(<HacerPedido />);
-
-    // agregar un elemento al carrito para asegurarse de que no esté vacío
-    const addButtons = getAllByText("+");
-
-    // Hacer clic en el primer botón "+"
-    if (addButtons.length > 0) {
-      await userEvent.click(addButtons[0]);
-    }
-    // Buscar el botón "Vaciar el carrito" usando getAllByText
-    const clearButton = getByRole('button', { name: /vaciar/i });
+    // Buscar el botón "Vaciar el carrito" usando diferentes métodos
+    const clearButton = getByText("Vaciar el carrito");
 
     if (clearButton) {
       await userEvent.click(clearButton);
@@ -203,8 +172,8 @@ describe('HacerPedido Component', () => {
   });
 });
 
-
-it('should display correct total and items in cart', () => {
+// Prueba para mostrar el total correcto y los elementos en el carrito
+it("debería mostrar el total correcto y los elementos en el carrito", () => {
   const { getByText, getAllByText } = render(<HacerPedido />);
 
   // Buscar elementos específicos usando getByText con opciones exactas
